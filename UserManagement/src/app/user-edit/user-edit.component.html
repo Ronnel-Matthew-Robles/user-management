@@ -1,0 +1,40 @@
+<div class="container mx-auto">
+  <h1 class="text-2xl font-semibold mb-4">Edit User</h1>
+  <form (submit)="updateUser()" class="mb-5">
+    <input type="text" id="name" [(ngModel)]="user.name" name="name" class="w-full p-2 border border-gray-300 rounded" required minlength="4" #name="ngModel">
+    <div *ngIf="name.invalid && (name.dirty || name.touched)"
+        class="text-red-700">
+        <div *ngIf="name.errors?.['required']">
+          Name is required.
+        </div>
+        <div *ngIf="name.errors?.['minlength']">
+          Name must be at least 4 characters long.
+        </div>
+    </div>
+    <div class="mb-4">
+      <label for="email" class="block">Email:</label>
+      <input type="email" id="email" [(ngModel)]="user.email" name="email" class="w-full p-2 border border-gray-300 rounded" required #email="ngModel">
+      <div *ngIf="email.invalid && (email.dirty || email.touched)"
+        class="text-red-700" required>
+        <div *ngIf="email.errors?.['required']">
+          Email is required.
+        </div>
+      </div>
+    </div>
+    <div class="mb-4">
+      <label for="phoneNumber" class="block">Phone Number:</label>
+      <input type="tel" id="phoneNumber" [(ngModel)]="user.phoneNumber" name="phoneNumber" class="w-full p-2 border border-gray-300 rounded" required maxlength="11" #phoneNumber="ngModel">
+      <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
+        class="text-red-700" required>
+        <div *ngIf="phoneNumber.errors?.['required']">
+          Phone Number is required.
+        </div>
+        <div *ngIf="phoneNumber.errors?.['maxlength']">
+          Phone Number must be max 11 numbers long.
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded-full">Update User</button>
+  </form>
+  <a routerLink="/users" class="text-blue-500 hover:underline"><i class="fa-solid fa-arrow-left"></i> Back to User List</a>
+</div>

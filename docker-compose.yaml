@@ -1,0 +1,24 @@
+version: '3'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: UserManagementAPI/Dockerfile
+    ports:
+      - "5057:80"
+    depends_on:
+      - mongodb
+
+  frontend:
+    build:
+      context: .
+      dockerfile: UserManagement/Dockerfile
+    ports:
+      - "4200:80"
+    links:
+      - api
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"

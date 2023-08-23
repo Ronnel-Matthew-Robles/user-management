@@ -1,0 +1,28 @@
+<div class="container mx-auto">
+  <div class="flex justify-between">
+    <h1 class="text-2xl font-semibold mb-4">User List</h1>
+    <button routerLink="/users/add" class="bg-blue-500 text-white px-4 py-2 mb-4 rounded-full">
+      <i class="fas fa-plus"></i> Add User
+    </button>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <!-- Loop through users from your Angular component -->
+    <div *ngFor="let user of users" class="p-4 border border-gray-300 rounded">
+      <h3 class="text-lg font-semibold">{{ user.name }}</h3>
+      <p class="text-gray-600">{{ user.email }}</p>
+      <p class="text-gray-600">{{ user.phoneNumber }}</p>
+      <div class="mt-2">
+        <a routerLink="/users/{{ user.id }}" class="text-blue-500 hover:underline">
+          <i class="fas fa-eye"></i> View
+        </a>
+        <a routerLink="/users/edit/{{ user.id }}" class="text-green-500 hover:underline ml-2">
+          <i class="fas fa-edit"></i> Edit
+        </a>
+        <button *ngIf="user.id" (click)="deleteUser(user.id)" class="text-red-500 hover:underline ml-2">
+          <i class="fas fa-trash"></i> Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
