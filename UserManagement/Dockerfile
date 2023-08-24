@@ -17,7 +17,7 @@ RUN npm install
 COPY . .
 
 # Build the Angular application
-RUN ng build --prod
+RUN ng build
 
 # Use a lightweight Node.js runtime for serving the application
 FROM node:18-slim
